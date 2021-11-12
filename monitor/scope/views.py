@@ -83,7 +83,7 @@ def bigApiView(request):
     print(realvals)
 
     #if it has been over 24 hours since the first entry and delta hasnt been 0 in the last 24 hours, trigger alarm
-    if (0 not in realvals) & (timezone.now() - starttime >= timedelta(seconds=15)) :
+    if (0 not in realvals) & (timezone.now() - starttime >= timedelta(hours=24)) :
         Alert.objects.create(tragedy=archive.id)
     #Show current alerts since uptime in HttpResponse
     if Alert.objects.exists():
